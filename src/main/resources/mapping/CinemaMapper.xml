@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hunt.j1902.mapper.CinemaMapper">
+    <resultMap id="cinemaMap" type="com.hunt.j1902.pojo.Cinema">
+        <id property="fid" column="filmID"/>
+        <id property="cname" column="电影名称"/>
+        <result property="leixing" column="类型"/>
+        <result property="zhuyan" column="主演"/>
+        <result property="daoyan" column="导演"/>
+        <result property="money" column="票价"/>
+    </resultMap>
+    <select id="findAll" resultMap="cinemaMap">
+        SELECT
+        *
+        FROM cinema
+    </select>
+    <insert id="addCinema" >
+        INSERT cinema VALUES (#{fid},#{cname},#{leixing},#{zhuyan},#{daoyan},#{money})
+    </insert>
+    <select id="getCinema" parameterType="int">
+        SELECT
+        *
+        FROM cinema
+        WHERE id=#{id}
+    </select>
+    <delete id="delCinema" parameterType="int">
+        DELETE FROM cinema WHERE id=#{id}
+    </delete>
+</mapper>
